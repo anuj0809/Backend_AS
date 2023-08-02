@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  api:
+    build: .
+    container_name: "spot_buzz_assignment"
+    environment:
+      - DB_USERNAME=admin
+      - DB_PASSWORD=mypass
+      - DB_NAME=player_db
+      - DB_TABLE=players
+      - DB_PORT=5432
+      - DB_HOST=db
+      # - DB="host=172.17.0.1 user=admin password=mypass dbname=player_db port=5432 sslmode=disable"
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+
+  db:
+    image: postgres:15.3-alpine3.18
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=mypass
+      - POSTGRES_DB=player_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+volumes:
+  postgres_data:
