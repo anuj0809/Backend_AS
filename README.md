@@ -1,4 +1,4 @@
-## SpotBuzz Backened Intern - Assignment
+## Backened Intern - Assignment
 
 1. Clone the repo on to your system.
 
